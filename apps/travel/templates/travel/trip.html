@@ -1,0 +1,41 @@
+<!doctype>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/travel.css' %}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="side_bar">
+                <form action="logout">
+                    <button id="submit">Log out</button>
+                </form>
+                {% if messages %}
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div id="main_content">
+                <h3>check out this trip!</h3>
+                <a>Destination: {{ trip.destination }}</a>
+                <a>Planned by: {{ trip.trip_creator.first_name }} {{ trip.trip_creator.last_name }}</a>
+                <a>Description {{ trip.description }}</a>
+                <a>Start date: {{ trip.start_dt }}</a>
+                <a>End Date: {{ trip.end_dt }}</a>
+              <!--   <ul>
+                    {% for peep in people %}
+                    <li>{{peep.first_name}}
+                    {{peep.last_name}}</li>
+                    {% endfor %}
+                </ul> -->
+            </div>
+            <div id="side_bar">
+            <a href="/destination">Add a destination!</a>
+            <a href="/trips">Back to all trips</a>
+        </div>
+        </div>
+    </body>
+</html>

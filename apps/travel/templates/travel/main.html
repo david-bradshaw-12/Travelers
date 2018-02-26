@@ -1,0 +1,68 @@
+<!doctype>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/travel.css' %}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="side_bar">
+                <form action="logout">
+                    <button id="submit">Log out</button>
+                </form>
+                {% if messages %}
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div id="main_content">
+                <h3>Welcome to the trips website!</h3>
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <th>Destination</th>
+                        <th>Travel Date</th>
+                        <th>Travel end date</th>
+                        <th>Join?</th>
+                    </tr>
+                    {% for trip in user_trips %}
+                    <tr>
+                        <td>{{ trip.trip_creator.first_name }} {{ trip.trip_creator.last_name }}</td>
+                        <td><a href="destination/{{ trip.id }}">{{ trip.destination }}</a></td>
+                        <td>{{ trip.start_dt }}</td>
+                        <td>{{ trip.end_dt }}</td>
+                         <td><a>Join</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Destination</th>
+                            <th>Travel Date</th>
+                            <th>Travel end date</th>
+                            <th>Join?</th>
+                        </tr>
+                        {% for trip in trips %}
+                        <tr>
+                            <td>{{ trip.trip_creator.first_name }} {{ trip.trip_creator.last_name }}</td>
+                            <td><a href="destination/{{ trip.id }}">{{ trip.destination }}</a></td>
+                            <td>{{ trip.start_dt }}</td>
+                            <td>{{ trip.end_dt }}</td>
+                             <td><a href="destination/{{ trip.id }}/add">Join</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div id="side_bar">
+                <a href="/destination">Add a destination!</a>
+                <a href="/trips">Back to all trips</a>
+            </div>
+        </div>
+    </body>
+</html>
